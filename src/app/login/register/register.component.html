@@ -1,0 +1,29 @@
+
+<div class="register">
+    <form class="custom-form" method="post">
+      <h1>Register</h1>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Email"
+        required="required"
+      />
+      <input
+        type="password"
+        [(ngModel)]="pass"
+        name="password"
+        placeholder="Password"
+        required="required"
+      />
+      <input
+        type="password"
+        [(ngModel)]="confirmPassword"
+        name="password"
+        placeholder="Repeat the password"
+        required="required"
+      />
+      <button mat-raised-button color="warn" type="submit" (click)="register()">Registrarse</button>
+      <button mat-raised-button color="primary" routerLink="/login">Login</button>
+    </form>
+  </div>

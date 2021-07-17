@@ -1,0 +1,90 @@
+<main class="home">
+  <h1 class="home__title">Kanban</h1>
+  <p>
+    En nuestro día a día siempre tenemos que realizar diferentes tipos de tareas
+    y priorizarlas y dejarlas por escrito nos ayuda a abordarlas mucho más
+    rápido y lograr su realización
+  </p>
+  <p>Por ello en este tablero te invitamos a organizar tu día a día</p>
+  <section class="home__task-list">
+    <h2 class="home__task-list__title">Lista de tareas</h2>
+    <div class="home__task-list__buttons">
+      <button
+        class="option-button"
+        mat-button
+        mat-raised-button
+        (click)="getPrioritiesTask('ALTA')"
+      >
+        <mat-icon aria-hidden="false" aria-label="urgent icon">alarm</mat-icon
+        >ALTA
+      </button>
+      <button
+        class="option-button"
+        mat-button
+        mat-raised-button
+        (click)="getPrioritiesTask('MEDIA')"
+      >
+        <mat-icon aria-hidden="false" aria-label="medium icon"
+          >autorenew</mat-icon
+        >MEDIA
+      </button>
+      <button
+        class="option-button"
+        mat-button
+        mat-raised-button
+        (click)="getPrioritiesTask('BAJA')"
+      >
+        <mat-icon aria-hidden="false" aria-label="medium icon"
+          >assignment_returned</mat-icon
+        >BAJA
+      </button>
+    </div>
+    <div class="home__task-list__container">
+      <mat-task class="task" *ngFor="let task of taskList">
+        <mat-task-header
+          [ngClass]="{
+            'task__header--ALTA': task.priority === 'ALTA',
+            'task__header--MEDIA': task.priority === 'MEDIA',
+            'task__header--BAJA': task.priority === 'BAJA'
+          }"
+        >
+          <mat-task-title class="task-title">
+            <div class="task-title__icon">
+              <mat-icon
+                aria-hidden="false"
+                aria-label="urgent icon"
+                *ngIf="task.priority === 'ALTA'"
+                >alarm</mat-icon
+              >
+              <mat-icon
+                aria-hidden="false"
+                aria-label="medium icon"
+                *ngIf="task.priority === 'MEDIA'"
+                >autorenew</mat-icon
+              >
+              <mat-icon
+                aria-hidden="false"
+                aria-label="medium icon"
+                *ngIf="task.priority === 'BAJA'"
+                >assignment_returned</mat-icon
+              >
+              <span>Tarea</span>
+            </div>
+          </mat-task-title>
+          <mat-task-subtitle class="task__task-list__subtitle"
+            ><strong>Fecha de finalización:</strong>
+            {{ task.date | date }}</mat-task-subtitle
+          >
+        </mat-task-header>
+        <mat-task-content class="task__content">
+          <p class="task__task-list__description">
+            {{ task.description }}
+          </p>
+        </mat-task-content>
+      </mat-task>
+    </div>
+    <div class="home__task-list__message" *ngIf="taskList?.length == 0">
+      <p class="text">No hay elementos para mostrar</p>
+    </div>
+  </section>
+</main>
