@@ -13,11 +13,14 @@ import { BoardModule } from './board/board.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login/login.module';
 import { RegisterModule } from './login/register/register.module';
+import { CookieService } from 'ngx-cookie-service';
+import { LogoutComponent } from './login/logout/logout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LogoutComponent,
 
   ],
   imports: [
@@ -32,9 +35,9 @@ import { RegisterModule } from './login/register/register.module';
     BoardModule,
     HomeModule,
     LoginModule,  
-    RegisterModule  
+    RegisterModule 
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

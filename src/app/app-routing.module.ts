@@ -20,6 +20,12 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
+    path: 'config',
+    //before syntax deprecated in v.8
+    //loadChildren: './board/board.module#BoardModule'
+    loadChildren: () => import('./config/config.module').then(m => m.ConfigModule)
+  },  
+  {
     path: 'login',
     //before syntax deprecated in v.8
     //loadChildren: './home/home.module#HomeModule',

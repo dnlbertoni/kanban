@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ErrorSchema } from 'src/app/core/models/errorschema';
 import { UsuarioService } from 'src/app/core/services/usuario.service';
 
 @Component({
@@ -10,8 +12,9 @@ export class LoginComponent implements OnInit {
   
   email!: string;
   pass!: string;
+  error!: ErrorSchema;
 
-  constructor( public UsuarioService:UsuarioService) { }
+  constructor( public UsuarioService:UsuarioService, public router: Router) { }
 
   ngOnInit(): void {
     
@@ -19,8 +22,13 @@ export class LoginComponent implements OnInit {
 
   login() {
     const user = { email: this.email, password: this.pass };
-    this.UsuarioService.getApiLogin(user).subscribe(data=>{
-      console.log(data);
+    this.UsuarioService.login(user).subscribe(data=>{
+      this.UsuarioService.setToken(data.token);
+      this.router.navigateByUrl('/');
+    },
+    error => {
+      this.error = error;
+      console.log(this.error);
     });
   }
 }
